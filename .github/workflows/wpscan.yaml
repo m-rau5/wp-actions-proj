@@ -16,6 +16,16 @@ jobs:
 
       - name: Start WP on docker
         run: docker compose up -d
+        
+      - name: Install to finish WordPress setup through CLI
+        run: |
+          docker exec wordpress wp core install \
+            --url="http://localhost:8080" \
+            --title="WPscan Site" \
+            --admin_user=admin \
+            --admin_password=cool_password_123 \
+            --admin_email=admin@admin.com \
+            --skip-email
 
       - name: Wait for WP
         run: |
