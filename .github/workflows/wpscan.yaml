@@ -7,8 +7,8 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     env:
-      RAUL_LNAME_DB_PASS: ${{ secrets.RAUL_LNAME_DB_PASS }}
-      RAUL_LNAME_ROOT_PASS: ${{ secrets.RAUL_LNAME_ROOT_PASS }}
+      RAUL_MOIS_DB_PASS: ${{ secrets.RAUL_MOIS_DB_PASS }}
+      RAUL_MOIS_ROOT_PASS: ${{ secrets.RAUL_MOIS_ROOT_PASS }}
 
     steps:
       - name: Repo checkout
