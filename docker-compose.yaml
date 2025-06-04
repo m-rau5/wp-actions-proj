@@ -2,8 +2,7 @@ version: '3.8'
 
 services:
   wordpress:
-    container_name: wordpress
-    image: wordpress:php8.2-apache
+    image: wordpress:latest
     ports:
       - "8080:80"
     environment:
