@@ -23,13 +23,14 @@ jobs:
 
       - name: Install to finish WordPress setup through CLI
         run: |
-          docker exec wordpress wp core install --allow-root\
+          docker exec wordpress wp core install \
             --url="http://localhost:8080" \
-            --title="WPscan Site" \
+            --title="Vulnerable Site" \
             --admin_user=admin \
-            --admin_password=cool_password_123 \
-            --admin_email=admin@admin.com \
-            --skip-email
+            --admin_password=weakpass123 \
+            --admin_email=admin@example.com \
+            --skip-email \
+            --allow-root
 
       - name: Wait for WP
         run: |
