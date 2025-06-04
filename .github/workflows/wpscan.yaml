@@ -23,9 +23,9 @@ jobs:
 
       - name: Install to finish WordPress setup through CLI
         run: |
-          docker exec wordpress wp core install \
+          docker exec -w /var/www/html wordpress wp core install \
             --url="http://localhost:8080" \
-            --title="Vulnerable Site" \
+            --title="wordpress" \
             --admin_user=admin \
             --admin_password=weakpass123 \
             --admin_email=admin@example.com \
