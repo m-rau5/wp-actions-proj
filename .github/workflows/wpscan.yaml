@@ -48,6 +48,14 @@ jobs:
               --allow-root
           "
 
+      - name: Activate vulnerable theme
+        run: |
+          docker exec -w /var/www/html wordpress wp theme activate twentyseventeen --allow-root
+
+      - name: Activate vulnerable plugin
+        run: |
+          docker exec -w /var/www/html wordpress wp plugin activate contact-form-7 --allow-root
+
       - name: Install WPScan
         run: sudo gem install wpscan
 
