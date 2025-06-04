@@ -35,4 +35,5 @@ jobs:
             --url http://localhost \
             --enumerate vp,vt,cb,u \
             --disable-tls-checks \
-            --random-user-agent
+            --random-user-agent \
+            --force
