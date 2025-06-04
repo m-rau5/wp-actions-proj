@@ -17,11 +17,11 @@ jobs:
       - name: Start WP on docker
         run: docker compose up -d
 
-      - name: Wait for WP
+      - name: Wait for WP to install
         run: |
-          echo "Waiting for WordPress..."
+          echo "Waiting for WP install to finish..."
           for i in {1..30}; do
-            curl -s http://localhost:8080 > /dev/null && break
+            curl -s http://localhost:8080/wp-admin/install.php | grep "WordPress Installation" > /dev/null || break
             sleep 5
           done
 
