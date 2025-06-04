@@ -24,6 +24,9 @@ jobs:
             curl -s http://localhost:8080 > /dev/null && break
             sleep 5
           done
+        
+      - name: Wait for WordPress to initialize
+        run: sleep 30
 
       - name: Install WPScan
         run: |
