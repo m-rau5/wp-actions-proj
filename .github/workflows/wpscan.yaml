@@ -1,0 +1,34 @@
+name: WPScan Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    env:
+      RAUL_LNAME_DB_PASS: ${{ secrets.RAUL_LNAME_DB_PASS }}
+      RAUL_LNAME_ROOT_PASS: ${{ secrets.RAUL_LNAME_ROOT_PASS }}
+
+    steps:
+      - name: Repo checkout
+        uses: actions/checkout@v4
+
+      - name: Start WP on docker
+        run: docker-compose up -d
+
+      - name: Wait for WP
+        run: |
+          echo "Waiting for WordPress..."
+          for i in {1..30}; do
+            curl -s http://localhost:8080 > /dev/null && break
+            sleep 5
+          done
+
+      - name: Install WPScan
+        run: |
+          sudo gem install wpscan
+
+      - name: Run WPScan
+        run: |
+          wpscan --url http://localhost:8080 --enumerate vp,vt,cb,u --disable-tls-checks --random-user-agent
