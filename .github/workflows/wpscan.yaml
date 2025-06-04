@@ -14,25 +14,24 @@ jobs:
       - name: Repo checkout
         uses: actions/checkout@v4
 
-      - name: Start WP on docker
+      - name: Start WP docker
         run: docker compose up -d
 
-      - name: Wait for WP to install
+      - name: Wait for WP install to complete
         run: |
-          echo "Waiting for WP install to finish..."
+          echo "Waiting for install.php to go away..."
           for i in {1..30}; do
-            curl -s http://localhost:8080/wp-admin/install.php | grep "WordPress Installation" > /dev/null || break
+            ! curl -s http://localhost:8080/wp-admin/install.php | grep -q "language-continue" && break
             sleep 5
           done
 
       - name: Install WPScan
-        run: |
-          sudo gem install wpscan
+        run: sudo gem install wpscan
 
-      - name: Run WPScan inside Docker
+      - name: Run WPScan
         run: |
-          docker run --rm --network container:$(docker ps -qf "name=wordpress") wpscanteam/wpscan \
-            --url http://localhost \
+          docker run --rm --network host wpscanteam/wpscan \
+            --url http://localhost:8080 \
             --enumerate vp,vt,cb,u \
             --disable-tls-checks \
             --random-user-agent \
