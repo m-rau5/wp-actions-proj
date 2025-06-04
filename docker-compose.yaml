@@ -12,6 +12,9 @@ services:
       WORDPRESS_DB_PASSWORD: ${RAUL_MOIS_DB_PASS}
     depends_on:
       - db
+    volumes:
+      - ./addons/plugins:/var/www/html/wp-content/plugins
+      - ./addons/themes:/var/www/html/wp-content/themes
 
   db:
     image: mysql:5.7
