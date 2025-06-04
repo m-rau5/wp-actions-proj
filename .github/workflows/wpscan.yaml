@@ -24,14 +24,15 @@ jobs:
             curl -s http://localhost:8080 > /dev/null && break
             sleep 5
           done
-        
-      - name: Wait for WordPress to initialize
-        run: sleep 30
 
       - name: Install WPScan
         run: |
           sudo gem install wpscan
 
-      - name: Run WPScan
+      - name: Run WPScan inside Docker
         run: |
-          wpscan --url http://localhost:8080 --enumerate vp,vt,cb,u --disable-tls-checks --random-user-agent
+          docker run --rm --network container:$(docker ps -qf "name=wordpress") wpscanteam/wpscan \
+            --url http://localhost \
+            --enumerate vp,vt,cb,u \
+            --disable-tls-checks \
+            --random-user-agent
