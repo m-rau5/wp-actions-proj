@@ -69,5 +69,4 @@ jobs:
             --url http://localhost:8080 \
             --enumerate vp,vt,cb,u \
             --disable-tls-checks \
-            --random-user-agent \
-            --api-token $WP_API_TOKEN
+            --random-user-agent 
