@@ -53,7 +53,7 @@ jobs:
             --admin_email='$WP_EMAIL' \
             --path='/var/www/html' \
             --allow-root
-        "
+          "
 
 
       - name: Activate vulnerable theme
