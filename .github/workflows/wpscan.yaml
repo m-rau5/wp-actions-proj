@@ -27,16 +27,14 @@ jobs:
           echo "Waiting for WordPress to be ready..."
           sleep 5
 
-      - name: Install WP-CLI
-        run: |
-          curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-          chmod +x wp-cli.phar
-          sudo mv wp-cli.phar /usr/local/bin/wp
-
-      - name: Create admin user using WP-CLI
+      - name: Create user using WP-CLI
         run: |
           docker exec wordpress bash -c "
             apt-get update && apt-get install -y less mariadb-client
+          "
+          docker exec wordpress bash -c "
+            curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
+            chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
           "
           docker exec wordpress bash -c "
             wp core install \
