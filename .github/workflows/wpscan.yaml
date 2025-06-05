@@ -67,7 +67,7 @@ jobs:
         run: |
           docker run --rm --network host wpscanteam/wpscan \
             --url http://localhost:8080 \
-            --enumerate ap,vt,cb,u \
+            --enumerate vp,vt,cb,u \
             --disable-tls-checks \
             --random-user-agent \
             --api-token $WP_API_TOKEN
