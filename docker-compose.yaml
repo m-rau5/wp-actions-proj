@@ -8,8 +8,8 @@ services:
       - "8080:80"
     environment:
       WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_NAME: wordpress
-      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_NAME: ${RAUL_MOIS_WP_DB_NAME}
+      WORDPRESS_DB_USER: ${RAUL_MOIS_WP_DB_USER}
       WORDPRESS_DB_PASSWORD: ${RAUL_MOIS_DB_PASS}
     depends_on:
       - db
@@ -20,7 +20,7 @@ services:
   db:
     image: mysql:5.7
     environment:
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
+      MYSQL_DATABASE: ${RAUL_MOIS_SQL_DB_NAME}
+      MYSQL_USER: ${RAUL_MOIS_SQL_DB_USER}
       MYSQL_PASSWORD: ${RAUL_MOIS_DB_PASS}
       MYSQL_ROOT_PASSWORD: ${RAUL_MOIS_ROOT_PASS}
