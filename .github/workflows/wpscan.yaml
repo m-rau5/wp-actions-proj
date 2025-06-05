@@ -11,6 +11,9 @@ jobs:
     env:
       RAUL_MOIS_DB_PASS: ${{ secrets.RAUL_MOIS_DB_PASS }}
       RAUL_MOIS_ROOT_PASS: ${{ secrets.RAUL_MOIS_ROOT_PASS }}
+      WP_USER: ${{ secrets.RAUL_MOIS_WP_USER }}
+      WP_PASS: ${{ secrets.RAUL_MOIS_WP_PASS }}
+      WP_EMAIL: ${{ secrets.RAUL_MOIS_WP_EMAIL }}
 
     steps:
       - name: Repo checkout
@@ -43,9 +46,9 @@ jobs:
             wp core install \
               --url='http://localhost:8080' \
               --title='Test Site' \
-              --admin_user='admin' \
-              --admin_password='password123' \
-              --admin_email='admin@example.com' \
+              --admin_user='$WP_USER' \
+              --admin_password='$WP_PASS' \
+              --admin_email='$WP_EMAIL' \
               --path='/var/www/html' \
               --allow-root
           "
