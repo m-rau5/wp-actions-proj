@@ -49,7 +49,7 @@ jobs:
             --url='http://localhost:8080' \
             --title='Test Site' \
             --admin_user='$WP_USER' \
-            --admin_password='$WP_PASS' \
+            --admin_password='$DB_PASS' \
             --admin_email='$WP_EMAIL' \
             --path='/var/www/html' \
             --allow-root
